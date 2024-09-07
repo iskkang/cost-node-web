@@ -1,18 +1,21 @@
 const fs = require('fs');
-const table = require('../utils/airtableClient');
+const path = require('path');
+const airtableClient = require('../utils/airtableClient');
 
+// Airtable 데이터를 가져와 data.json 파일에 저장하는 함수
 exports.fetchAndSaveData = async (req, res) => {
   try {
     const records = [];
-    await table.select().eachPage((pageRecords, fetchNextPage) => {
+    await airtableClient.select().eachPage((pageRecords, fetchNextPage) => {
       pageRecords.forEach(record => {
         records.push(record.fields);
       });
       fetchNextPage();
     });
 
-    // JSON 파일로 저장
-    fs.writeFileSync('data.json', JSON.stringify(records, null, 2));
+    // data.json 파일로 저장
+    const dataPath = path.join(__dirname, '../../public/data.json');
+    fs.writeFileSync(dataPath, JSON.stringify(records, null, 2));
 
     res.json({ message: 'Data successfully fetched and saved to data.json' });
   } catch (error) {
