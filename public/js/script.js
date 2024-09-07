@@ -16,12 +16,12 @@ document.getElementById('searchButton').addEventListener('click', () => {
         .then(data => {
             if (data.length > 0) {
                 const ticket = data[0];
-                document.getElementById('priceDisplay').innerText = `가격: ${ticket.cost}원`;
-                document.getElementById('typeDisplay').innerText = `유형: ${ticket.type}`;
-                document.getElementById('timeDisplay').innerText = `시간: ${ticket.t_time}`;
-                document.getElementById('routeDisplay').innerText = `경로: ${ticket.route}`;
+                document.getElementById('priceDisplay').innerText = `Cost: ${ticket.cost}원`;
+                document.getElementById('typeDisplay').innerText = `Type: ${ticket.type}`;
+                document.getElementById('timeDisplay').innerText = `T/Time: ${ticket.t_time}`;
+                document.getElementById('routeDisplay').innerText = `Route: ${ticket.route}`;
             } else {
-                document.getElementById('priceDisplay').innerText = '해당 경로에 대한 티켓 가격을 찾을 수 없습니다.';
+                document.getElementById('priceDisplay').innerText = '요청하신 운임을 찾을 수 없습니다.';
             }
         })
         .catch(error => {
