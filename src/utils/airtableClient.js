@@ -7,6 +7,6 @@ Airtable.configure({
 });
 
 const base = Airtable.base(process.env.AIRTABLE_BASE_ID);
-const table = base('cis_cost');  // 'tcr'은 당신의 테이블 이름입니다. 필요하다면 변경하세요.
+const table = base('tcr');  // 'tcr'은 당신의 테이블 이름입니다. 필요하다면 변경하세요.
 
 module.exports = table;
