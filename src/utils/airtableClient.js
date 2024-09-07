@@ -7,6 +7,6 @@ Airtable.configure({
 });
 
 const base = Airtable.base(process.env.AIRTABLE_BASE_ID);
-const table = base('Table Name');  // 'Table Name'을 실제 Airtable 테이블 이름으로 변경
+const table = base('tcr');  // 'Table Name'을 실제 Airtable 테이블 이름으로 변경
 
 module.exports = table;
