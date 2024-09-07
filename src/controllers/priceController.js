@@ -11,7 +11,6 @@ exports.getSuggestions = async (req, res) => {
   }
 };
 
-
 exports.getPriceCheck = async (req, res) => {
   try {
     const { pol, pod, type } = req.query;
@@ -22,6 +21,7 @@ exports.getPriceCheck = async (req, res) => {
       res.status(404).json({ error: '해당 조건의 운송 정보를 찾을 수 없습니다.' });
     }
   } catch (error) {
+    console.error("Error in getPriceCheck:", error);
     res.status(500).json({ error: '서버 오류가 발생했습니다.' });
   }
 };
