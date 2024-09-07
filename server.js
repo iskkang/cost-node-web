@@ -1,8 +1,8 @@
 require('dotenv').config();  // 환경 변수 로드
 const express = require('express');
 const cors = require('cors');
-const priceCheckRoutes = require('./routes/priceRoutes');  // priceRoutes 경로 확인
-const suggestionRoutes = require('./routes/suggestionRoutes');  // suggestionRoutes 추가
+const priceCheckRoutes = require('./src/routes/priceRoutes');  // priceRoutes 경로 확인
+const suggestionRoutes = require('./src/routes/suggestionRoutes');  // suggestionRoutes 추가
 
 const app = express();
 
