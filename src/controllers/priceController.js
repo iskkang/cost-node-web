@@ -1,4 +1,4 @@
-const Price = require('../models/Price');
+const Price = require('./models/Price');
 
 exports.getSuggestions = async (req, res) => {
   try {
