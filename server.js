@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
-const airtableRoutes = require('./routes/airtableRoutes');  // Airtable 라우트 연결
+const airtableRoutes = require('.src/routes/airtableRoutes');  // Airtable 라우트 연결
 
 const app = express();
 
