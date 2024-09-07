@@ -31,7 +31,7 @@ jobs:
         run: |
           git config --global user.email "your-email@example.com"
           git config --global user.name "github-actions"
-          git remote set-url origin https://x-access-token:${{ secrets.ACTIONS_TOKEN }}@github.com/your-username/your-repository.git
+          git remote add origin https://x-access-token:${{ secrets.ACTIONS_TOKEN }}@github.com/your-username/your-repository.git
           git add public/data.json
           git commit -m "Update data.json from Airtable"
           git push origin HEAD:main  # 푸시할 브랜치 명시
