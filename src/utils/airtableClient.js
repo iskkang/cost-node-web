@@ -1,4 +1,5 @@
 const Airtable = require('airtable');
+require('dotenv').config();  // 환경 변수를 로드합니다
 
 Airtable.configure({
     endpointUrl: 'https://api.airtable.com',
@@ -6,6 +7,6 @@ Airtable.configure({
 });
 
 const base = Airtable.base(process.env.AIRTABLE_BASE_ID);
-const table = base('tcr');  // 'tcr'은 실제 테이블 이름으로 변경해야 합니다.
+const table = base('tcr');  // 'tcr'은 당신의 테이블 이름입니다. 필요하다면 변경하세요.
 
 module.exports = table;
