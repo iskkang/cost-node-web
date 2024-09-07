@@ -1,6 +1,8 @@
 const express = require('express');
 const Airtable = require('airtable');
 const dotenv = require('dotenv');
+const path = require('path');
+const helmet = require('helmet');
 
 // 환경 변수 설정
 dotenv.config();
@@ -8,12 +10,23 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Airtable 설정 (API Key와 Base ID를 .env에서 가져옴)
+// Airtable 설정
 const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID);
 const TABLE_NAME = 'tcr'; // Table Name: tcr
 
+// Content Security Policy(CSP) 설정 (Helmet 사용)
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'", "'unsafe-inline'"],  // 인라인 스크립트 허용(보안 위험성 있음)
+            styleSrc: ["'self'", "'unsafe-inline'"],
+        },
+    },
+}));
+
 // 정적 파일 제공 (HTML, CSS, JS)
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // API 엔드포인트: Airtable에서 데이터를 가져오기
 app.get('/api/tickets', (req, res) => {
