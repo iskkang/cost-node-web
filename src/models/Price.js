@@ -1,19 +1,19 @@
 const airtableClient = require('../utils/airtableClient');
 
 class Price {
-  static async getSuggestions(field, query) {
+    static async getPriceInfo(pol, pod, type) {
+    const safePol = pol.replace(/'/g, "\\'");
+    const safePod = pod.replace(/'/g, "\\'");
+    const safeType = type.replace(/'/g, "\\'");
+  
     const records = await airtableClient.select({
-      filterByFormula: `LOWER(FIND('${query.toLowerCase()}', LOWER({${field}}))) > 0`
+      filterByFormula: `AND(
+        LOWER({pol}) = LOWER('${safePol}'),
+        LOWER({pod}) = LOWER('${safePod}'),
+        LOWER({Type}) = LOWER('${safeType}')
+      )`
     }).firstPage();
-
-    return [...new Set(records.map(record => record.get(field)))];
-  }
-
-  static async getPriceInfo(pol, pod, type) {
-    const records = await airtableClient.select({
-      filterByFormula: `AND({pol} = '${pol}', {pod} = '${pod}', {Type} = '${type}')`
-    }).firstPage();
-
+  
     if (records.length > 0) {
       const record = records[0];
       return {
