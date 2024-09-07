@@ -23,7 +23,7 @@ jobs:
         run: npm install
 
       - name: Fetch Airtable data and save to data.json
-        run: node src/controllers/airtableController.js  # 경로 수정 완료
+        run: node src/controllers/airtableController.js
 
       - name: Commit and push data.json
         env:
@@ -34,4 +34,4 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.ACTIONS_TOKEN }}@github.com/your-username/your-repository.git
           git add public/data.json
           git commit -m "Update data.json from Airtable"
-          git push
+          git push origin HEAD:main  # 푸시할 브랜치 명시
