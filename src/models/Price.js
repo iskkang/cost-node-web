@@ -1,4 +1,4 @@
-const airtableClient = require('./utils/airtableClient');
+const airtableClient = require('../utils/airtableClient');
 
 class Price {
   static async getSuggestions(field, query) {
