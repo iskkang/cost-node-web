@@ -6,9 +6,11 @@ exports.getSuggestions = async (req, res) => {
     const suggestions = await Price.getSuggestions(field, query);
     res.json(suggestions);
   } catch (error) {
+    console.error("Error in getSuggestions:", error);
     res.status(500).json({ error: '서버 오류가 발생했습니다.' });
   }
 };
+
 
 exports.getPriceCheck = async (req, res) => {
   try {
