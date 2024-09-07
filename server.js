@@ -1,7 +1,6 @@
 require('dotenv').config();  // 환경 변수 로드
 const express = require('express');
 const cors = require('cors');
-const suggestionRoutes = require('./routes/suggestionRoutes');
 const priceCheckRoutes = require('./routes/priceCheckRoutes');
 
 const app = express();
@@ -18,7 +17,6 @@ app.get('/api', (req, res) => {
 });
 
 // API 라우트
-app.use('/api/suggestions', suggestionRoutes);
 app.use('/api/price-check', priceCheckRoutes);
 
 // 404 처리
