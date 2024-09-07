@@ -1,0 +1,34 @@
+name: Update data.json
+
+on:
+  schedule:
+    # 매일 새벽 12시에 데이터를 업데이트
+    - cron: "0 0 * * *"
+  workflow_dispatch: # 수동으로도 트리거 가능
+  push:              # 코드 푸시 시 실행
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Fetch Airtable data and save to data.json
+        run: node src/controllers/fetchAirtableData.js
+
+      - name: Commit and push data.json
+        run: |
+          git config --global user.email "your-email@example.com"
+          git config --global user.name "github-actions"
+          git add public/data.json
+          git commit -m "Update data.json from Airtable"
+          git push
