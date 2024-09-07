@@ -2,7 +2,6 @@ const express = require('express');
 const Airtable = require('airtable');
 const dotenv = require('dotenv');
 const path = require('path');
-const helmet = require('helmet');
 
 // 환경 변수 설정
 dotenv.config();
