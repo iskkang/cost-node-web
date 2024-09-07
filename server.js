@@ -8,8 +8,9 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Airtable 설정
+// Airtable 설정 (API Key와 Base ID를 .env에서 가져옴)
 const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID);
+const TABLE_NAME = 'tcr'; // Table Name: tcr
 
 // 정적 파일 제공 (HTML, CSS, JS)
 app.use(express.static('public'));
@@ -20,7 +21,7 @@ app.get('/api/tickets', (req, res) => {
     const pod = req.query.pod;  // 사용자가 입력한 도착지
     const type = req.query.type; // 사용자가 입력한 유형
 
-    base('tcr').select({
+    base(TABLE_NAME).select({
         filterByFormula: `AND({POL} = '${pol}', {POD} = '${pod}', {Type} = '${type}')`,
         view: "Grid view"
     }).firstPage((err, records) => {
