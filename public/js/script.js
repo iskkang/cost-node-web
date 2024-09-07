@@ -1,6 +1,6 @@
 const API_KEY = 'your_airtable_api_key'; // Airtable API Key
 const BASE_ID = 'your_airtable_base_id'; // Airtable Base ID
-const TABLE_NAME = 'Tickets'; // Airtable 테이블 이름
+const TABLE_NAME = 'tcr'; // Airtable 테이블 이름
 
 let debounceTimer; // 디바운스 타이머를 저장할 변수
 
